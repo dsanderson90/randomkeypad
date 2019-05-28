@@ -1,0 +1,12 @@
+.numpad {
+  display: flex;
+  flex-flow: row wrap;
+  height: 100px;
+  width: 100px;
+}
+.key {
+  display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: 1 0 33.3333%;
+}
