@@ -3,6 +3,7 @@ const keys = ['1', '2', '3' , '4', '5', '6', '7', '8', '9', '*', '0', '#'];
 const numpad = document.querySelector('.numpad');
 const key = document.querySelector('.key')
 let screen =  document.getElementById('screen')
+let createPinBtn = document.getElementById('create');
 let pin = '';
 
 function shuffle(array) {
@@ -57,7 +58,7 @@ numpad.appendChild(btn);
 function removeButtons() {
   var div = document.getElementById("div");
   //  remove the keys but keep the display input and randomize btn
-  while (div.childNodes.length > 4) {
+  while (div.childNodes.length > 6) {
     div.removeChild(div.lastChild);
 }
 }
@@ -77,7 +78,5 @@ function createPin() {
   }
 
 }
-
-let createPinBtn = document.getElementById('create');
 
 createPinBtn.addEventListener('click', createPin);
