@@ -87,4 +87,8 @@ function clearScreen() {
 createPinBtn.addEventListener('click', function() {
   createPin();
   clearScreen();
+  screen.placeholder = 'Enter Your Pin'
 });
+
+
+
