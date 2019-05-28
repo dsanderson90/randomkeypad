@@ -67,6 +67,7 @@ function removeButtons() {
 
 let randomBtn = document.querySelector('.random')
 randomBtn.addEventListener('click', function() {
+  clearScreen();
   removeButtons();
   populateButtons();
 })
@@ -79,4 +80,11 @@ function createPin() {
 
 }
 
-createPinBtn.addEventListener('click', createPin);
+function clearScreen() {
+  screen.value = '';
+}
+
+createPinBtn.addEventListener('click', function() {
+  createPin();
+  clearScreen();
+});
