@@ -1,12 +1,35 @@
 .numpad {
   display: flex;
   flex-flow: row wrap;
-  height: 100px;
-  width: 100px;
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  left: 50%;
+  margin-left: -50px;
+
 }
+
 .key {
   display: flex;
 	align-items: center;
 	justify-content: center;
 	flex: 1 0 33.3333%;
+}
+
+.random, .enterPin {
+  flex: 0 0 100%;
+}
+
+input.display {
+  background-color: black;
+  flex: 0 0 98%;
+  color: lime;
+  text-align: center;
+}
+::placeholder {
+  color: lime;
+}
+
+body {
+  background-color: black
 }
