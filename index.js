@@ -1,9 +1,8 @@
 const keys = ['1', '2', '3' , '4', '5', '6', '7', '8', '9', '*', '0', '#'];
 
 const numpad = document.querySelector('.numpad');
-const key = document.querySelector('.key')
-let screen =  document.getElementById('screen')
-let createPinBtn = document.getElementById('create');
+const screen =  document.getElementById('screen')
+const createPinBtn = document.getElementById('create');
 let pin = '';
 
 function shuffle(array) {
@@ -90,5 +89,8 @@ createPinBtn.addEventListener('click', function() {
   screen.placeholder = 'Enter Your Pin'
 });
 
-
-
+document.onkeydown = function (e) {
+  if(e.keyCode) {
+        screen.value += e.key
+  }
+};
