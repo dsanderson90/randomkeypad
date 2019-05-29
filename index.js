@@ -3,7 +3,7 @@ const keys = ['1', '2', '3' , '4', '5', '6', '7', '8', '9', '*', '0', '#'];
 const numpad = document.querySelector('.numpad');
 const screen =  document.getElementById('screen')
 const createPinBtn = document.getElementById('create');
-let pin = '';
+let pin = null;
 
 function shuffle(array) {
   var m = array.length, t, i;
@@ -32,14 +32,14 @@ shuffle(newKeys);
 
 //  loop through new array and make a button for each element
 for (var i = 0; i < newKeys.length; i++) {
-let btn = document.createElement('button');
-btn.className = 'key'
-btn.innerText= newKeys[i];
+let key = document.createElement('button');
+key.className = 'key'
+key.innerText= newKeys[i];
 
 //  add an event listener to each btn that will add its value to the display
-btn.addEventListener('click', function() {
+key.addEventListener('click', function() {
 
-  screen.value += btn.innerText;
+  screen.value += key.innerText;
   if (screen.value.length > 4) {
     screen.value = '';
   }
@@ -50,7 +50,7 @@ btn.addEventListener('click', function() {
 
 
 });
-numpad.appendChild(btn);
+numpad.appendChild(key);
   }
 }
 
@@ -76,6 +76,9 @@ function createPin() {
   if (screen.value.length == 4) {
     pin = screen.value;
   }
+  else {
+    screen.placeholder = 'Pin must be 4 digits'
+  }
 
 }
 
@@ -89,8 +92,21 @@ createPinBtn.addEventListener('click', function() {
   screen.placeholder = 'Enter Your Pin'
 });
 
+
+// keyboard events
 document.onkeydown = function (e) {
-  if(e.keyCode) {
+  if((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105)) {
         screen.value += e.key
+  }
+  if(e.keyCode == 8) {
+    screen.value = screen.value.substring(0, screen.value.length-1)
+  }
+  if(e.keyCode == 13) {
+    createPin();
+    clearScreen();
+    screen.placeholder = 'Enter Your Pin'
+  }
+  if (screen.value == pin) {
+    screen.value = 'CORRECT'
   }
 };
