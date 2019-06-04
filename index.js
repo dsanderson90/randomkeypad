@@ -46,7 +46,7 @@ key.addEventListener('click', function() {
     screen.value = '';
   }
   else if (screen.value.length == 4 && screen.value != pin && pin != null) {
-    screen.value = 'INCORRECT PIN'
+    screen.value = 'INCORRECT'
   }
 
 
@@ -129,8 +129,11 @@ document.onkeydown = function (e) {
   if((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105)) {
         screen.value += e.key
   }
-  if(e.keyCode == 8) {
+  if(e.keyCode == 8 && screen.value != 'INCORRECT') {
     screen.value = screen.value.substring(0, screen.value.length-1)
+  }
+  if(e.keyCode == 8 && screen.value == 'INCORRECT') {
+    clearScreen();
   }
   if(e.keyCode == 13) {
     createPin();
