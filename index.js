@@ -7,6 +7,9 @@ const div = document.getElementById("div");
 
 let pin = null;
 
+let incorrect = 'INCORRECT'
+let pinreq = 'Pin must be 4 digits'
+
 function shuffle(array) {
   var m = array.length, t, i;
 
@@ -46,7 +49,7 @@ key.addEventListener('click', function() {
     screen.value = '';
   }
   else if (screen.value.length == 4 && screen.value != pin && pin != null) {
-    screen.value = 'INCORRECT'
+    screen.value = incorrect
   }
 
 
@@ -76,7 +79,7 @@ randomBtn.addEventListener('click', function() {
 function createPin() {
 
    if (screen.value.length < 4) {
-    screen.value = 'Pin must be 4 digits'
+    screen.value = pinreq
   }
   else if (screen.value.length === 4) {
     pin = screen.value;
@@ -119,7 +122,7 @@ function replaceBtn() {
       verifyPin();
     }
     else {
-      screen.value = 'INCORRECT'
+      screen.value = incorrect
     }
   })
 }
@@ -129,10 +132,10 @@ document.onkeydown = function (e) {
   if((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105)) {
         screen.value += e.key
   }
-  if(e.keyCode == 8 && screen.value != 'INCORRECT' && screen.value != 'Pin must be 4 digits') {
+  if(e.keyCode == 8 && screen.value != incorrect && screen.value != pinreq) {
     screen.value = screen.value.substring(0, screen.value.length-1)
   }
-  if(e.keyCode == 8 && screen.value == 'INCORRECT'|| screen.value == 'Pin must be 4 digits') {
+  if(e.keyCode == 8 && screen.value == incorrect|| screen.value == pinreq) {
     clearScreen();
   }
   if(e.keyCode == 13) {
@@ -147,7 +150,7 @@ document.onkeydown = function (e) {
     verifyPin();
   }
   else if (screen.value.length == 4 && screen.value != pin && pin != null) {
-    screen.value = 'INCORRECT'
+    screen.value = incorrect
   }
 };
 
