@@ -7,6 +7,7 @@ const div = document.getElementById("div");
 
 let pin = null;
 
+let correct = 'CORRECT'
 let incorrect = 'INCORRECT'
 let pinreq = 'Pin must be 4 digits'
 
@@ -92,7 +93,7 @@ function clearScreen() {
 
 function verifyPin() {
   if (screen.value == pin) {
-  screen.value = 'CORRECT'
+  screen.value = correct
   document.body.style.backgroundColor = 'lime';
 }
 
@@ -102,6 +103,8 @@ createPinBtn.addEventListener('click', function() {
   createPin();
   if(pin != null) {
   replaceBtn();
+  removeButtons();
+  populateButtons();
   clearScreen();
   screen.placeholder = 'Enter Your Pin'
   }
@@ -129,19 +132,29 @@ function replaceBtn() {
 
 // keyboard events
 document.onkeydown = function (e) {
+
   if((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105)) {
         screen.value += e.key
   }
+
   if(e.keyCode == 8 && screen.value != incorrect && screen.value != pinreq) {
     screen.value = screen.value.substring(0, screen.value.length-1)
   }
-  if(e.keyCode == 8 && screen.value == incorrect|| screen.value == pinreq) {
+
+  if(e.keyCode == 8 && screen.value == incorrect|| screen.value == pinreq || screen.value == correct) {
+
     clearScreen();
+
   }
+
   if(e.keyCode == 13) {
+
     createPin();
+
   if(pin != null) {
   replaceBtn();
+  removeButtons();
+  populateButtons();
   clearScreen();
   screen.placeholder = 'Enter Your Pin'
   }
