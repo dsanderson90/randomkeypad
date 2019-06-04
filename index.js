@@ -75,13 +75,12 @@ randomBtn.addEventListener('click', function() {
 
 function createPin() {
 
-  if (screen.value.length == 4) {
+   if (screen.value.length < 4) {
+    screen.value = 'Pin must be 4 digits'
+  }
+  else if (screen.value.length === 4) {
     pin = screen.value;
   }
-  else {
-    screen.placeholder = 'Pin must be 4 digits'
-  }
-
 }
 
 function clearScreen() {
@@ -89,33 +88,38 @@ function clearScreen() {
 }
 
 function verifyPin() {
-
+  if (screen.value == pin) {
   screen.value = 'CORRECT'
   document.body.style.backgroundColor = 'lime';
+}
 
 }
 
 createPinBtn.addEventListener('click', function() {
   createPin();
-  clearScreen();
+  if(pin != null) {
   replaceBtn();
+  clearScreen();
   screen.placeholder = 'Enter Your Pin'
+  }
 });
 
 function replaceBtn() {
 
   let enter = document.createElement('button');
-  enter.innerText = 'Enter Pin'
+  enter.innerHTML = 'Enter Pin'
   enter.setAttribute('id', 'enter');
 
   let create = document.getElementById('create')
+  create.insertAdjacentElement('beforebegin', enter);
   create.parentNode.removeChild(create);
-
-  numpad.insertBefore(enter, numpad.children[2]);
 
   enter.addEventListener('click', function() {
     if (screen.value == pin) {
       verifyPin();
+    }
+    else {
+      screen.value = 'Invalid Pin'
     }
   })
 }
@@ -130,9 +134,11 @@ document.onkeydown = function (e) {
   }
   if(e.keyCode == 13) {
     createPin();
-    replaceBtn();
-    clearScreen();
-    screen.placeholder = 'Enter Your Pin'
+  if(pin != null) {
+  replaceBtn();
+  clearScreen();
+  screen.placeholder = 'Enter Your Pin'
+  }
   }
   if (screen.value == pin) {
     verifyPin();
