@@ -45,8 +45,8 @@ key.addEventListener('click', function() {
   if (screen.value.length > 4) {
     screen.value = '';
   }
-  else if (screen.value === pin) {
-    screen.value = 'CORRECT'
+  else if (screen.value.length == 4 && screen.value != pin && pin != null) {
+    screen.value = 'INCORRECT PIN'
   }
 
 
@@ -113,9 +113,11 @@ function replaceBtn() {
 
   numpad.insertBefore(enter, numpad.children[2]);
 
-  // enter.addEventListener('click', function() {
-  //   if(sc)
-  // })
+  enter.addEventListener('click', function() {
+    if (screen.value == pin) {
+      verifyPin();
+    }
+  })
 }
 
 // keyboard events
@@ -134,6 +136,9 @@ document.onkeydown = function (e) {
   }
   if (screen.value == pin) {
     verifyPin();
+  }
+  else if (screen.value.length == 4 && screen.value != pin && pin != null) {
+    screen.value = 'INCORRECT'
   }
 };
 
