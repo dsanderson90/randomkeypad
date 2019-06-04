@@ -119,7 +119,7 @@ function replaceBtn() {
       verifyPin();
     }
     else {
-      screen.value = 'Invalid Pin'
+      screen.value = 'INCORRECT'
     }
   })
 }
@@ -129,10 +129,10 @@ document.onkeydown = function (e) {
   if((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105)) {
         screen.value += e.key
   }
-  if(e.keyCode == 8 && screen.value != 'INCORRECT') {
+  if(e.keyCode == 8 && screen.value != 'INCORRECT' && screen.value != 'Pin must be 4 digits') {
     screen.value = screen.value.substring(0, screen.value.length-1)
   }
-  if(e.keyCode == 8 && screen.value == 'INCORRECT') {
+  if(e.keyCode == 8 && screen.value == 'INCORRECT'|| screen.value == 'Pin must be 4 digits') {
     clearScreen();
   }
   if(e.keyCode == 13) {
