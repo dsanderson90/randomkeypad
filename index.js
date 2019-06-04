@@ -3,6 +3,8 @@ const keys = ['1', '2', '3' , '4', '5', '6', '7', '8', '9', '*', '0', '#'];
 const numpad = document.querySelector('.numpad');
 const screen =  document.getElementById('screen')
 const createPinBtn = document.getElementById('create');
+const div = document.getElementById("div");
+
 let pin = null;
 
 function shuffle(array) {
@@ -86,12 +88,35 @@ function clearScreen() {
   screen.value = '';
 }
 
+function verifyPin() {
+
+  screen.value = 'CORRECT'
+  document.body.style.backgroundColor = 'lime';
+
+}
+
 createPinBtn.addEventListener('click', function() {
   createPin();
   clearScreen();
+  replaceBtn();
   screen.placeholder = 'Enter Your Pin'
 });
 
+function replaceBtn() {
+
+  let enter = document.createElement('button');
+  enter.innerText = 'Enter Pin'
+  enter.setAttribute('id', 'enter');
+
+  let create = document.getElementById('create')
+  create.parentNode.removeChild(create);
+
+  numpad.insertBefore(enter, numpad.children[2]);
+
+  // enter.addEventListener('click', function() {
+  //   if(sc)
+  // })
+}
 
 // keyboard events
 document.onkeydown = function (e) {
@@ -103,10 +128,12 @@ document.onkeydown = function (e) {
   }
   if(e.keyCode == 13) {
     createPin();
+    replaceBtn();
     clearScreen();
     screen.placeholder = 'Enter Your Pin'
   }
   if (screen.value == pin) {
-    screen.value = 'CORRECT'
+    verifyPin();
   }
 };
+

@@ -20,7 +20,7 @@
   flex: 1 0 33.3333%;
 }
 
-.random, .enterPin {
+.random, .enterPin, #enter {
   flex: 0 0 100%;
 }
 
