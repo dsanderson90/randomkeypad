@@ -146,7 +146,13 @@ document.onkeydown = function (e) {
   }
   // if Enter is press and pin is falsy create the pin, otherwise verify it.
   if(e.keyCode == 13) {
-    !pin ? createPin() : verifyPin();
+    if(!pin) {
+       createPin();
+       replaceBtn();
+    }
+    else {
+      verifyPin();
+    }
   }
   // if entered value length is 4, not null and not equal to the pin,
   // then verify the pin.
