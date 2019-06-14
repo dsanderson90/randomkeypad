@@ -133,7 +133,7 @@ document.onkeydown = function (e) {
   // if the key is a number add it to the screen
   // special chars and letters are not allowed.
   let key = Number(e.key)
-  if(isNaN(key) == false) {
+  if(isNaN(key) == false || e.keyCode == 51 ||e.keyCode == 56) {
     screen.value += e.key
   }
   // backspace handling
